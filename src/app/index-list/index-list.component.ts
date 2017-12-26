@@ -17,7 +17,7 @@ export class IndexListComponent implements OnInit {
   }
 
   getCountries(): void {
-    this.countries = this.countryService.getCountries();
+    this.countryService.getCountries().subscribe(countries => this.countries = countries);
   }
 
   countries: Country[];
