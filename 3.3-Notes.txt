@@ -1,0 +1,80 @@
+Welcome to 3rd video of this section
+
+In this and the coming videos of thi section, we will look into a very useful feature of 
+angular framework called dependency injections.
+
+In this video we will look into:
+
+Agenda:
+- Dependency Injection: a formal introduction
+- Dependency injection as a pattern.
+- Demo!!
+
+
+Though we have already used it in bits in the previous video where we used
+CountryService in the index-list component, lets meet DI formally now.
+
+DI is nothing but a framework supported pattern for managing code dependencies in 
+angular. Basically when you create an object you tell angular framework what all objects
+should be available for this module to function as expected and angular ensure the same
+are available.
+
+
+To understand this lets take a step back and understand it in isolation.
+Lets say there is a class called destination-for-di.ts (please refer file in code parallely)
+
+
+Now in this class as you can see destination creates everything in its constructor, another way to put
+this is that destination instead of asking for Geo and political info objects tries to make its own.
+Now this makes this class extremely brittle.
+
+Lets see how:
+As of now GeoInfo and PolInfo have empty constructor, now what if there is requirement
+that makes PolInfo of an destination a function of next nearest elections/poll dates.
+
+or GeoInfo of an destination a function of month of the year.
+
+This breaks our destination class isnt it? we have to code it again to ensure the 
+dependency of memebers are accounted for in its construction.
+This not only creates high maintainence cost for a project but also leads to areas 
+which might be difficult to unit test.
+
+please note testability of your code is an extreamly important aspect for enterprise production
+grade applications.
+
+now how should we fix it?
+See next class in the same file, DestinationWithDI, now destination no longer creates 
+its own Geo and political info objects. it rather depends on where the destination object
+is required to consume its dependencies.
+
+Now you can easily do something like below:
+
+let DestinationWithDI = new DestinationWithDI(new DestinationGeoInfo(),
+new DestinationPolInfo());
+
+now say if someone extends GeoInfo class, that is no longer Destination's problem
+e.g.
+
+class DestinationGeoInfo2 {
+    constructor (public month: Month) {
+
+    }
+
+    let monthOfTheYear = "Jan";
+    // you can easily do below
+    let DestinationWithDI = new DestinationWithDI(new DestinationGeoInfo2(monthOfTheYear),
+new DestinationPolInfo());
+}
+
+
+So, hope you observed how minor tweak in the way we define our components and its dependency defines 
+the level of flexibility our component may have.
+
+This is all in this video, in the next video we jump back to our travel blog code 
+will try to see DI in action.
+
+Stay tuned, Thanks for watching
+
+
+
+
