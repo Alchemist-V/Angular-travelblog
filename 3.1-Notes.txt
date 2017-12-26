@@ -1,0 +1,79 @@
+Hello and welcome to section 3 
+Services and dependencies in Angular.
+
+in this section we will revisit our example where we were loading mock data for countries and destinations, we will
+how components should only worry about rendering data on browser while the task of fetching that data should be delegated
+to other objects.
+
+Welcome to first video of this section
+IN this video we will learn about what are services in angular, when to use them and most importantly how to use them.
+
+Agenda for this video:
+- What are services in angular?
+- Why use services in angular?
+- Demo!
+
+
+Okay!!
+Components shouldn't fetch or save data directly and they certainly shouldn't knowingly present fake data. 
+They should focus on presenting data and delegate data access to a service.
+
+services are a great way enable information sharing between classes that dont know each other. So here 
+we will create a service called CountryService which should present country data to components/classes
+whoever and whenever.
+
+//command to create service: ng generate service country
+This generates country.service.ts 
+
+Notice the @Injectable decorator, which is imported from angular core library,
+This decorator tells angular that this service itself might have injected dependencies.
+We will see how that works in upcoming video. But for now lets configure this service.
+
+
+Now we discussed what are services and how to create them, lets briefly talk about 
+why is it recommended to have them. Now the country service we just created may fetch 
+countries to be prsented from a remote call, some cache lookup or some DB IO, but the
+key is that components responsible to render countries are uneffected even if there is 
+any change in the wat data is fetched and thats the biggest win here.
+
+
+Now back to implementing country service.
+
+import country and COUNTRIES into service definition, please note we are still 
+relying mock country list to present data,  please dont get confused upon this.
+Actually it is one of the many ways a service can provide data to components, the 
+critical point to note here is that components are not worried about from where the
+data is fetched. They shall just invoke the service call and they should have the 
+data.
+
+
+NOw the service we just created needs to be registered as a provider so that angular
+can inject the service dependency in the components that require it.
+We will talk about dependency injection in details in the next video.
+
+The same could have been achieved by using this param while creating service:
+// ng generate service country --module=app
+Just because i wanted to show you how all of this are connected to each other i 
+avoided it, going forward we are going to use it.
+
+Now we are going to break the hard coupling between the component index-list and
+countries data that needs to be served.
+1. remove country init to countries and initialize it to an empty array instead.
+2. define a local method getCountries that invokes service and updates above array with response.
+3. invoke getCountries from ngOnInit(), please note this is one the several lifecycle 
+hooks available to all components. ngOnInit() implease all the code sitting inside this 
+method shall be called once the component is initialized.
+
+save your update and check the browser, the app should be functioning like it was, but
+ now components stands independent of whats feeding them with data they have to render.
+
+
+This is all in this video, in next video will uncover a big issue with this implementation
+and will find a way to fix it.
+
+stay tuned, thanks for watching.
+
+
+
+
+

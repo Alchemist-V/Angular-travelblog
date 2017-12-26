@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {COUNTRIES} from './../mock-countries';
 import {Country} from './../country';
+import { CountryService } from '../country.service';
 
 @Component({
   selector: 'app-index-list',
@@ -9,12 +10,17 @@ import {Country} from './../country';
 })
 export class IndexListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private countryService: CountryService) { }
 
   ngOnInit() {
+    this.getCountries();
   }
 
-  countries = COUNTRIES;
+  getCountries(): void {
+    this.countries = this.countryService.getCountries();
+  }
+
+  countries: Country[];
 
   selectedCountry: Country;
 

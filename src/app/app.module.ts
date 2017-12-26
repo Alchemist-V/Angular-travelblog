@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-
+import {CountryService} from './country.service';
 import { AppComponent } from './app.component';
 import { IndexListComponent } from './index-list/index-list.component';
 import { CountrySelectedComponent } from './country-selected/country-selected.component';
@@ -22,7 +22,7 @@ import { HighlightDirective } from './highlight.directive';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CountryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
