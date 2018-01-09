@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 
 import { APP_CONFIG} from './global-config';
-import {IAppConfig} from './global-config.interface';
+import {GlobalConfig} from './global-config.interface';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import {IAppConfig} from './global-config.interface';
 })
 export class AppComponent {
   
-  constructor(@Inject( APP_CONFIG ) private config: IAppConfig) {
+  constructor(@Inject( APP_CONFIG ) private config: GlobalConfig) {
   }
 
   title: string;

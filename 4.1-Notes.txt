@@ -1,0 +1,65 @@
+Hello and welcome to fourth and final section of this learning series.
+
+In this section we are going to learn about to some of the most important aspects of any web app development, doesnt matter
+what framework you are on, its more than likely that you will run to these patterns. Alright
+1. Routing, In layman terms its basically controlling what URL related to your app lands on which component, but its much more than this
+ and thats what we are going to learn about.
+2. Is HttpClient support in angular, almost every FE app rely on a BE infra to get data and its makes http calls to get this data. We are going to
+learn how angular facilitates this.
+
+so lets get started.
+
+
+Welcome to first video of this section, 
+
+Agenda:
+- What is Routing and need of it?
+- Route configuration
+
+
+Okay!
+Lets say we have a new requirement for our travel blog, say we need a dashboard view.
+The navigation between the dashboard view and the countries is to be arranged like this (show flow diagram here,
+and talk about the flow in the diagram).
+
+Okay,
+lets try to break this requirement into two pieces:
+1. we need a navigation to facilitate display of various components that we have already created.
+2. we need a wrapper component called dashboard, which going forward can also serve as landing view for
+our app.
+
+So lets get to first task here:
+We will facilitate this navigation between components using routing in angular. Its among few best practices that
+configure our router as a seperate top level module.
+to do it lets create app-routing module
+
+command: ng generate module app-routing --flat --module=app
+flat : creates it in app/src
+module=app: register this module in the import array of AppModule
+
+Generally, and you would note this too as you code more in angular we dont declare components in routing module,
+hence we can remove the declarations and Common modules from import array from the app-routing module.
+
+now we will configure router using the Routes in the RouterModule, so lets import these two and register 
+RouterModule in the export array of app-routing module. this ensure router directives are available in 
+AppModule components.
+
+Now lets add routes
+
+A typical angular route has two properties:
+1. path
+2. component
+
+now we intend to navigate to travelled coutries list for path localhost:4200/countries so lets configure the same.
+
+const routes: Routes = [
+  {path:'countries', component: IndexListComponent}
+];
+
+now for this to be functional we need our router config to be listening to browser changes, we do it by registering 
+our config to RouterModule using forRoot method in the import array.
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [ RouterModule ]
+})

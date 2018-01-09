@@ -11,6 +11,7 @@ import { DestinationListComponent } from './destination-list/destination-list.co
 import { HighlightDirective } from './highlight.directive';
 
 import { APP_CONFIG, APP_DI_CONFIG } from './global-config';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { APP_CONFIG, APP_DI_CONFIG } from './global-config';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [CountryService,
               LoggerService,
