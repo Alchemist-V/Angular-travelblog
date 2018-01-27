@@ -27,6 +27,7 @@ export class DestinationListComponent implements OnInit {
   getCountry(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.countryService.getCountryWithId(id).subscribe(country => this.country = country);
+    console.log("BLAHHBLHAB: ", this.country);
   }
 
 }
