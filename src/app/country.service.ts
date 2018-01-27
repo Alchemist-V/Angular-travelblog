@@ -8,6 +8,12 @@ import {Country} from './country';
 
 import {LoggerService} from './logger.service';
 
+ const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+
 @Injectable()
 export class CountryService {
 
@@ -38,6 +44,16 @@ export class CountryService {
     this.loggerService.log("Getting country with id countries..");
     return this.httpClient.get<Country>(this.countryServiceURL + "/"+id).pipe(
       catchError(this.handleError<Country>(`getCountryWithId id=${id}`))
+    );
+  }
+
+  /**
+   * Add new country to db
+   * @param country 
+   */
+  addCountry (country: Country): Observable<Country> {
+    return this.httpClient.post<Country>(this.countryServiceURL, country, httpOptions).pipe(
+      catchError(this.handleError<Country>('addCountry'))
     );
   }
 

@@ -48,20 +48,33 @@
       "destinations": [
         {
           "id": 1,
-          "name": "jhkvikBay of Islands",
-          "desc": "Sceanic bueaty & water sports"
+          "name": "Goa",
+          "desc": "Beaches and party "
         },
         {
           "id": 2,
-          "name": "Milford sound",
-          "desc": "glaciers, mountain and lakes."
+          "name": "Rajasthan",
+          "desc": "Desert and forts"
         },
         {
           "id": 3,
-          "name": "Auckland Vikas",
-          "desc": "Mueseums and bars. "
+          "name": "Karnataka",
+          "desc": "Ghats, Forests and WildLife "
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "Australia",
+      "destinations": []
+    },
+    {
+      "name": "South Africa",
+      "id": 5
+    },
+    {
+      "name": "Sweden",
+      "id": 6
     }
   ]
 }

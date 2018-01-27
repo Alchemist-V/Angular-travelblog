@@ -8,6 +8,15 @@
   </li>
 </ul>
 <br/>
+<div>
+  <label>Country name:
+    <input #countryName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(countryName.value); countryName.value=''">
+    add
+  </button>
+</div>
 <!-- remove destination list compoent as we are decoupling them -->
 <!-- <app-destination-list [country]="selectedCountry"></app-destination-list> -->
 <br/><br/>

@@ -22,6 +22,21 @@ export class IndexListComponent implements OnInit {
 
   countries: Country[];
 
+  /**
+   * Initiates country add flow.
+   * @param name 
+   */
+  add(name: String): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.countryService.addCountry({name} as Country)
+    .subscribe(country => {
+      this.countries.push(country);
+    })
+  }
+
   // selectedCountry: Country;
 
   // // on select action

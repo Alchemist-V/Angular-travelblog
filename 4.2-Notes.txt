@@ -184,17 +184,80 @@ simlilary lets modify our getCountryWithId api to handle error
   }
 ***********
 
-Alright, there you have it. Your HttpCliet in action,
-Allowing your app to be independent of data, to adhere to the 
-dynamic requirements.
+PART-2
+
+Ok, so now lets try another operation to complete our understanding 
+of this module.
+Lets allow user to add new country. We will be using PPOST operation here
+
+so lets add the api method to the service class.
+
+**************
+ const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+// this goes outisde the class at the top.
+
+// below inside the class.
+  /**
+   * Add new country to db
+   * @param country 
+   */
+  addCountry (country: Country): Observable<Country> {
+    return this.httpClient.post<Country>(this.countryServiceURL, country, httpOptions).pipe(
+      catchError(this.handleError<Country>('addCountry'))
+    );
+  }
+  ****************
+
+Now with service support in place, lets quickly come over to index list components
+as thats where we want to allow user to be able to create new
+country.
+
+*************
+<div>
+  <label>Country name:
+    <input #countryName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(countryName.value); countryName.value=''">
+    add
+  </button>
+</div>
+*****************
+
+Now we just need to tie this up with ts file of this component:
+*****************
+/**
+   * Initiates country add flow.
+   * @param name 
+   */
+  add(name: String): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.countryService.addCountry({name} as Country)
+    .subscribe(country => {
+      this.countries.push(country);
+    })
+  }
+
+***********************
+
+And there you have it your add countries / POST 
+call in action.
 
 NOw for practice i strongly encourage you to practice operations
-like POST where you can try to update a destination description.
+like PUT/DELETE/UPDATE 
 
 Alright, so in this video
 - we learnt how we can similate our own simple server
 - How to use httpclient to interact with web apis to interact with
 real time data.
+And we learnt it by implement a GET and POST call for our app.
 - we also learnt how make this integration robust by understanding 
 error handling and piping our response through a error handler.
 
