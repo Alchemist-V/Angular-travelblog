@@ -12,6 +12,7 @@ import { HighlightDirective } from './highlight.directive';
 
 import { APP_CONFIG, APP_DI_CONFIG } from './global-config';
 import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './/app-routing.module';
     IndexListComponent,
     CountrySelectedComponent,
     DestinationListComponent,
-    HighlightDirective
+    HighlightDirective,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

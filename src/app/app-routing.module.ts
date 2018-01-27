@@ -3,10 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IndexListComponent } from './index-list/index-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DestinationListComponent } from './destination-list/destination-list.component';
 
 
 const routes: Routes = [
-  {path:'countries', component: IndexListComponent}
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  {path: 'dashboard', component: DashboardComponent},
+  {path:'countries', component: IndexListComponent},
+  { path: 'destinations/:id', component: DestinationListComponent },
 ];
 
 

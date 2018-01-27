@@ -1,6 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Country } from './../country';
 
+import {ActivatedRoute} from '@angular/router';
+import { Location } from '@angular/common';
+
+import {CountryService} from './../country.service';
+
 @Component({
   selector: 'app-destination-list',
   templateUrl: './destination-list.component.html',
@@ -8,11 +13,20 @@ import { Country } from './../country';
 })
 export class DestinationListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private countryService: CountryService,
+              private location: Location) { }
 
   ngOnInit() {
+    this.getCountry();
   }
 
-  @Input() country: Country;
+  country: Country;
+  // @Input() country: Country;
+
+  getCountry(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.countryService.getCountryWithId(id).subscribe(country => this.country = country);
+  }
 
 }

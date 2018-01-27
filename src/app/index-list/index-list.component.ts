@@ -22,12 +22,12 @@ export class IndexListComponent implements OnInit {
 
   countries: Country[];
 
-  selectedCountry: Country;
+  // selectedCountry: Country;
 
-  // on select action
-  onSelect (country: Country) {
-    // assign clicked country as selected country.
-    this.selectedCountry = country;
-  }
+  // // on select action
+  // onSelect (country: Country) {
+  //   // assign clicked country as selected country.
+  //   this.selectedCountry = country;
+  // }
 
 }

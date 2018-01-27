@@ -17,6 +17,11 @@ export class CountryService {
     return of(COUNTRIES);
   }
 
+  getCountryWithId(id): Observable<Country> {
+    this.loggerService.log("Getting country with id countries..");
+    return of(COUNTRIES.find(country => country.id === id));
+  }
+
   // getCountries(): Observable<Country[]> {
   //   if (this.loggerService) {
   //      this.loggerService.log("Getting list of countries..");
